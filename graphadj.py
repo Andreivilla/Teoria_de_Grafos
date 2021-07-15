@@ -2,7 +2,7 @@ class Graphadj():
     def __init__(self, nvertices):
         self.nvertices = nvertices
         self.graphadj = [[[] for j in range(nvertices)] for i in range(nvertices)]
-    
+
     def print_graph(self):
         print(self.graphadj)
 
