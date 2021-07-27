@@ -1,11 +1,4 @@
-'''enquanto a fila não estiver vazia
-    retire um vértice v da fila
-    para cada vizinho w de v
-        se w não está numerado
-            então numere w
-                ponha w na fila'''
-
-from queue import Queue
+""" from queue import Queue
 from graph import Graph
 class Bfs:
     def __init__(self, g, v ):
@@ -32,12 +25,39 @@ class Bfs:
                         fila.put(i)
         return nun
 
-""" g = Graph(6)
+g = Graph(6)
 g.graph =  [[0,0,1,1,1,0], [0,1,0,0,1,0], [0,0,0,0,1,0], [0,0,0,0,1,1], [0,0,0,0,0,1], [0,1,0,0,0,0]]
 bfs = Bfs(g, 0)
-print(bfs.graphBfs())
+print(bfs.graphBfs()) """
 
-g1 = Graph(6)
-g1.graph =  [[0,1,1,0,0,1], [1,0,1,0,0,0], [1,1,0,1,1,0], [0,0,1,0,1,1], [0,0,1,1,0,0], [1,0,0,1,0,0]]
-bfs1 = Bfs(g1, 0)
-print(bfs1.graphBfs()) """
+from queue import Queue
+from graph import Graph
+class Bfs:
+    def __init__(self, g, v ):
+        self.g = g
+        self.v = v
+        self.num = []
+
+    def GRAPHbfs(self):
+        cnt = 0
+        for i in range(self.g.N):
+            self.num.append(-1)
+        queue = Queue()
+        self.num[self.v] = cnt
+        queue.put(self.v)
+
+        while queue.tam() != 0:
+            v = queue.get()
+            for i in range(self.g.N):
+                if self.g.adjacente(v, i):
+                    if self.num[i] == -1: 
+                        cnt += 1
+                        self.num[i] = cnt
+                        queue.put(i)
+        return self.num
+
+
+g = Graph(6)
+g.graph = [[0, 0, 1, 1, 1, 0], [0, 0, 1, 0, 1, 0], [0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 1, 1], [0, 0, 0, 0, 0, 1], [0, 1, 0, 0, 0, 0]]
+bfs = Bfs(g, 0)
+print(bfs.GRAPHbfs())

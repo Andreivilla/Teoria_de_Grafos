@@ -35,3 +35,10 @@ class Graph():
 
     def peso(self, a, b):
         return self.graph[a][b]
+
+    def grau(self, a):
+        count =0
+        for i in range(self.N):
+            if self.g[0][i] != 0:
+                count += 1
+        return count
