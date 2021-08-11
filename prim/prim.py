@@ -4,24 +4,24 @@ class Prim:
         self.s = s
         self.g = g
         self.k = [float('inf') for i in range(self.g.N)]
-        self.p = [None for i in range(self.g.N)]
-        self.q = [() for i in range(self.g.N)]
-
+        self.p = [-1 for i in range(self.g.N)]
+        self.q = [(i, self.k[i]) for i in range(self.g.N)]
 
     def agm(self):
-
-
+        self.p[self.s] = 0
         self.k[self.s] = 0
         
         for i in range(self.g.N):
-            self.q.append((i, self.k[i]))
-        
+            self.q[i] = (i, self.k[i])
+
         while(len(self.q) != 0):
-            #print("-------------------")
-            #print(f'P {self.p}')
-            #print(f'K {self.k}')
-            #print(f'Q {self.q}')
-            #print("-------------------")
+            self.atualizaQ()
+
+            print("-------------------")
+            print(f'P {self.p}')
+            print(f'K {self.k}')
+            print(f'Q {self.q}')
+            print("-------------------")
 
             u = self.minQ(self.q)                
             self.q.remove(u)
@@ -30,6 +30,8 @@ class Prim:
                     if self.verificaVQ(v, self.q) and self.g.peso(u[0], v) < self.k[v]:
                         self.p[v] = u[0]
                         self.k[v] = self.g.peso(u[0], v)
+
+
         return self.k
 
     def verificaVQ(self, v, q):
@@ -48,11 +50,11 @@ class Prim:
         return minTupla
 
     def atualizaQ(self):
-        for i in self.q:
-            if i[0] = 
-
-
-
+        for i in range(len(self.q)):
+            lst = list(self.q[i])
+            lst[1] = self.k[self.q[i][0]]
+            self.q[i] = tuple(lst)
+                
 
 g = Graph(5)
 g.graph =  [[0, 20, 10, 0, 0], [20, 0, 5, 20, 5], [10, 5, 0, 0, 15], [0, 20, 0, 0, 10], [0, 5, 15, 10, 0]]
