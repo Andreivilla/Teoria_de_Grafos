@@ -31,9 +31,6 @@ class Prim:
                         self.p[v] = u[0]
                         self.k[v] = self.g.peso(u[0], v)
 
-
-        return self.k
-
     def verificaVQ(self, v, q):
         for i in q:
             if i[0] == v:
@@ -57,6 +54,7 @@ class Prim:
                 
 
 g = Graph(5)
-g.graph =  [[0, 20, 10, 0, 0], [20, 0, 5, 20, 5], [10, 5, 0, 0, 15], [0, 20, 0, 0, 10], [0, 5, 15, 10, 0]]
-prim = Prim(g, 0)
-print(prim.agm())
+g.graph = [[0, 15, 12, 0, 0], [15, 0, 6, 13, 5], [12, 6, 0, 6, 0], [0, 13, 6, 0, 0], [0, 5, 0, 0, 0]]
+prim = Prim(g,0)
+prim.agm()
+print(prim.p)
